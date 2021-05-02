@@ -2,7 +2,7 @@ const container = document.querySelector(".container")
 
 const checkaxios=async ()=>{
   // Send a GET request
-  const mydata = await axios.get("http://jsonplaceholder.typicode.com/posts");
+  const mydata = await axios.get("https://jsonplaceholder.typicode.com/posts");
   const jsondata=mydata.data;
   return jsondata;
  }
@@ -30,10 +30,6 @@ $("#myform").submit(function(e){
     alert();
   });
 });
-
-
-
-
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function() {
