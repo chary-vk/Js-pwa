@@ -2,7 +2,7 @@ const container = document.querySelector(".container")
 
 const checkaxios=async ()=>{
   // Send a GET request
-  const mydata = await axios.get("https://jsonplaceholder.typicode.com/posts");
+  const mydata = await axios.get("https://milletapi.netlify.app/.netlify/functions/api/products");
   const jsondata=mydata.data;
   return jsondata;
  }
@@ -11,11 +11,13 @@ const showCoffees = async () => {
   const titles=await checkaxios();
   let output = ""
   titles.forEach(
-    ({ id, title }) =>
+    ({title,price,imageUrl }) =>
       (output += `
               <div class="card">
-                <h1 class="card--title">${id}</h1>
-                <p>${title}</p>
+              <img src="${imageUrl}" class="card-avatar"/>
+                <h1 class="card--title">${title}</h1>
+                <p>${price}</p>
+                <button class="card-link">Add To Cart</button>
               </div>
               `)
   )
