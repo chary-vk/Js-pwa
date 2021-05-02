@@ -1,32 +1,39 @@
 const container = document.querySelector(".container")
-const coffees = [
-  { name: "Perspiciatis", image: "images/coffee1.jpg" },
-  { name: "Voluptatem", image: "images/coffee2.jpg" },
-  { name: "Explicabo", image: "images/coffee3.jpg" },
-  { name: "Rchitecto", image: "images/coffee4.jpg" },
-  { name: " Beatae", image: "images/coffee5.jpg" },
-  { name: " Vitae", image: "images/coffee6.jpg" },
-  { name: "Inventore", image: "images/coffee7.jpg" },
-  { name: "Veritatis", image: "images/coffee8.jpg" },
-  { name: "Accusantium", image: "images/coffee9.jpg" },
-]
 
-const showCoffees = () => {
+const checkaxios=async ()=>{
+  // Send a GET request
+  const mydata = await axios.get("http://jsonplaceholder.typicode.com/posts");
+  const jsondata=mydata.data;
+  return jsondata;
+ }
+ 
+const showCoffees = async () => {
+  const titles=await checkaxios();
   let output = ""
-  coffees.forEach(
-    ({ name, image }) =>
+  titles.forEach(
+    ({ id, title }) =>
       (output += `
               <div class="card">
-                <img class="card--avatar" src=${image} />
-                <h1 class="card--title">${name}</h1>
-                <a class="card--link" href="#">Taste</a>
+                <h1 class="card--title">${id}</h1>
+                <p>${title}</p>
               </div>
               `)
   )
   container.innerHTML = output
 }
 
-document.addEventListener("DOMContentLoaded", showCoffees)
+$(document).ready(function(){
+  showCoffees();
+
+$("#myform").submit(function(e){
+    e.preventDefault();
+    alert();
+  });
+});
+
+
+
+
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function() {
