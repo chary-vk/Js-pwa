@@ -6,6 +6,10 @@ const checkaxios=async ()=>{
   const jsondata=mydata.data;
   return jsondata;
  }
+
+ function hello(title){
+   window.location.href="/itemdetails/"+title;
+ }
  
 const showCoffees = async () => {
   const titles=await checkaxios();
@@ -17,7 +21,7 @@ const showCoffees = async () => {
               <img src="${imageUrl}" class="card-avatar"/>
                 <h1 class="card--title">${title}</h1>
                 <p>${price}</p>
-                <button class="card-link">Add To Cart</button>
+                <button class="card-link" onclick="hello('${title}')">Add To Cart</button>
               </div>
               `)
   )
